@@ -1,0 +1,28 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# JavaFX SDK 
+# Ignoră orice folder care începe cu javafx-sdk
+javafx-sdk*/
+
+# Javadoc & Generated Documentation
+# Acestea sunt fișierele html/js/css care îți apăreau pe GitHub
+*.html
+*.js
+*.css
+element-list
+package-list
+script-dir/
+resources/
+legal/
+
+# Build outputs
+out/
+target/
+build/
+
+# Alte fișiere de sistem
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ChatController">
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+    <Label fx:id="lblPartner" text="Chat" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+    <ListView fx:id="listMessages" VBox.vgrow="ALWAYS"/>
+
+    <Button text="Reply la mesajul selectat" onAction="#handleReply" style="-fx-font-size: 10px;"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="txtMessage" HBox.hgrow="ALWAYS" promptText="Scrie un mesaj..."/>
+
+        <Button fx:id="btnSend" text="Trimite" onAction="#handleSendMessage" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

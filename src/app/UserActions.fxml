@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.UserActionsController">
+    <tabs>
+        <Tab text="Adaugă Utilizator" closable="false">
+            <VBox spacing="10" alignment="TOP_CENTER">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                <Label text="Tip Utilizator:" style="-fx-font-weight: bold"/>
+                <ComboBox fx:id="comboType" prefWidth="200"/>
+
+                <GridPane vgap="10" hgap="10" alignment="CENTER">
+                    <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtUsername" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtEmail" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Parola:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <PasswordField fx:id="txtPass" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <Separator/>
+
+                <VBox fx:id="boxPersoana" spacing="5" visible="false" managed="false" alignment="CENTER">
+                    <Label text="Detalii Persoana" style="-fx-font-style: italic"/>
+                    <TextField fx:id="txtNume" promptText="Nume"/>
+                    <TextField fx:id="txtPrenume" promptText="Prenume"/>
+                    <DatePicker fx:id="dateNastere" promptText="Data Nasterii"/>
+                    <TextField fx:id="txtOcupatie" promptText="Ocupatie"/>
+                    <TextField fx:id="txtEmpatie" promptText="Nivel Empatie (double)"/>
+                </VBox>
+
+                <VBox fx:id="boxRata" spacing="5" visible="false" managed="false" alignment="CENTER">
+                    <Label text="Detalii Rata" style="-fx-font-style: italic"/>
+                    <ComboBox fx:id="comboDuckType" promptText="Tip Rata" prefWidth="200"/>
+                    <TextField fx:id="txtViteza" promptText="Viteza (double)"/>
+                    <TextField fx:id="txtRezistenta" promptText="Rezistenta (double)"/>
+                </VBox>
+
+                <Button text="Salvează Utilizator" onAction="#handleSaveUser" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Șterge Utilizator" closable="false">
+            <VBox spacing="15" alignment="CENTER">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label text="Stergere dupa ID" style="-fx-font-size: 14px;"/>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Label text="ID:"/>
+                    <TextField fx:id="txtDeleteId" prefWidth="80"/>
+                </HBox>
+
+                <Label text="Selectează tipul pentru a știi din ce tabel ștergem:"/>
+                <ComboBox fx:id="comboDeleteType" prefWidth="150"/>
+
+                <Button text="Șterge" onAction="#handleDeleteUser" style="-fx-background-color: #F44336; -fx-text-fill: white;"/>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>

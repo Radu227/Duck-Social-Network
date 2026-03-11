@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.FriendshipActionsController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestiune Prietenii" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="User 1 ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtId1" prefWidth="50" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="comboType1" prefWidth="120" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <Label text="User 2 ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtId2" prefWidth="50" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="comboType2" prefWidth="120" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+    </GridPane>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Adaugă Prietenie" onAction="#handleAddFriendship" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+        <Button text="Șterge Prietenie" onAction="#handleRemoveFriendship" style="-fx-background-color: #F44336; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

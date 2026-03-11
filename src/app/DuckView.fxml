@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ProgressBar?>
+
+<VBox alignment="TOP_CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.DuckController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestiune Retea Sociala" />
+
+    <HBox fx:id="operationsBox" alignment="CENTER" spacing="10.0">
+        <Button text="Gestioneaza Utilizatori" onAction="#handleOpenUserManagement"/>
+        <Button text="Gestioneaza Prietenii" onAction="#handleOpenFriendships"/>
+        <Button text="Nr. Comunitati" onAction="#handleShowCommunities"/>
+        <Button text="Comunitate Sociabila" onAction="#handleShowMostSociable"/>
+        <Button text="Chat (Simulare)" onAction="#handleOpenChat"/>
+        <Button text="Profilul Meu" onAction="#handleOpenProfile"/>
+    </HBox>
+
+    <Separator />
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+            <Tab text="Rate (Paginat)">
+                <VBox spacing="10">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label text="Filtrare Rate:" />
+                        <ComboBox fx:id="filterComboBox" prefWidth="150.0" promptText="Alege tipul" />
+                    </HBox>
+
+                    <TableView fx:id="duckTable" prefHeight="350.0" prefWidth="650.0">
+                        <columns>
+                            <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                            <TableColumn fx:id="colUsername" prefWidth="100.0" text="Username" />
+                            <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                            <TableColumn fx:id="colTip" prefWidth="100.0" text="Tip Rata" />
+                            <TableColumn fx:id="colViteza" prefWidth="75.0" text="Viteza" />
+                            <TableColumn fx:id="colRezistenta" prefWidth="75.0" text="Rezistenta" />
+                        </columns>
+                    </TableView>
+
+                    <HBox alignment="CENTER" spacing="15.0">
+                        <Button fx:id="btnPrevious" onAction="#handlePreviousPage" text="Previous" />
+                        <Label fx:id="labelPage" text="Page 0 / 0" />
+                        <Button fx:id="btnNext" onAction="#handleNextPage" text="Next" />
+                        <Label text="Linii pe pagină:" />
+                        <ComboBox fx:id="comboPageSize" prefWidth="70.0" />
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <Tab text="Persoane (Toate)">
+                <VBox spacing="10">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+                    <TableView fx:id="personTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colPersId" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="colNume" text="Nume" prefWidth="100"/>
+                            <TableColumn fx:id="colPrenume" text="Prenume" prefWidth="100"/>
+                            <TableColumn fx:id="colOcupatie" text="Ocupatie" prefWidth="100"/>
+                            <TableColumn fx:id="colEmpatie" text="Empatie" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+
+                    <Button text="Refresh Lista Persoane" onAction="#handleRefreshPersoane"/>
+                </VBox>
+            </Tab>
+
+            <Tab text="Cereri Prietenie">
+                <VBox spacing="15">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Trimite cerere catre (Username):" style="-fx-font-weight: bold"/>
+                        <TextField fx:id="txtRequestUsername" promptText="Username..."/>
+                        <Button text="Trimite" onAction="#handleSendRequest"/>
+                    </HBox>
+
+                    <Separator/>
+                    <Label text="Cereri Primite:" style="-fx-font-weight: bold"/>
+
+                    <TableView fx:id="requestTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colReqFrom" text="De la" prefWidth="150"/>
+                            <TableColumn fx:id="colReqDate" text="Data" prefWidth="150"/>
+                            <TableColumn fx:id="colReqStatus" text="Status" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="20" alignment="CENTER">
+                        <Button text="Accepta" onAction="#handleAcceptRequest" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                        <Button text="Refuza" onAction="#handleRejectRequest" style="-fx-background-color: #F44336; -fx-text-fill: white;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+            <Tab text="Evenimente">
+                <VBox spacing="15">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                    <Label text="Curse Disponibile" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+                    <TableView fx:id="eventTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colEventId" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="colEventName" text="Nume Eveniment" prefWidth="200"/>
+                            <TableColumn fx:id="colEventSubscribers" text="Nr. Participanti" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Button text="Inscrie-te (Subscribe)" onAction="#handleSubscribeEvent"/>
+                        <Button fx:id="btnStartCursa" text="START CURSA" onAction="#handleStartCursa"
+                                style="-fx-background-color: #ffcccc; -fx-font-weight: bold;"/>
+                    </HBox>
+
+                    <Separator/>
+
+                    <VBox spacing="5">
+                        <Label text="Status Proces (Nu blocheaza UI):"/>
+                        <Label fx:id="statusLabel" text="Așteptare comandă..." style="-fx-text-fill: blue;"/>
+                        <ProgressBar fx:id="progressBarCursa" progress="0.0" visible="false" prefWidth="400.0"/>
+                    </VBox>
+                </VBox>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>
